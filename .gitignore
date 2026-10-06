@@ -1,0 +1,13 @@
+.idea/
+cmake-build-*/
+build/
+/lab2/parent
+/lab2/child
+/lab3/lab3_main
+/lab3/generator
+/lab3/big.txt
+/lab3/input.txt
+/lab4/lab4_parent
+/lab4/lab4_child
+*.o
+.DS_Store
