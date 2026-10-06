@@ -5,32 +5,26 @@
 int divide_line(char *line, float *result) {
     char *end;
     *result = strtof(line, &end);
-    if (end == line)
-    {
+    if (end == line) {
         fprintf(stderr, "child: invalid number, exit\n");
         return -1;
     }
-    while (1)
-    {
+    while (1) {
         line = end;
-        float divider = strtof(line, &end);
-        if (line == end)
-        {
+        float next_num = strtof(line, &end);
+        if (line == end) {
             break;
         }
-        if (divider == 0)
-        {
+        if (next_num == 0) {
             fprintf(stderr, "child: division by zero, exit\n");
             return -1;
         }
-        *result /= divider;
+        *result /= next_num;
     }
-    while (isspace((unsigned char)*end))
-    {
+    while (isspace((unsigned char) *end)) {
         end++;
     }
-    if (*end != '\0')
-    {
+    if (*end != '\0') {
         fprintf(stderr, "child: invalid number, exit\n");
         return -1;
     }
@@ -40,11 +34,17 @@ int divide_line(char *line, float *result) {
 int main() {
     char *line = NULL;
     size_t size = 0;
-    while (getline(&line, &size, stdin) != -1)
-    {
+    while (getline(&line, &size, stdin) != -1) {
+        char *p = line;
+        while (isspace((unsigned char) *p)) {
+            p++;
+        }
+        if (*p == '\0') {
+            continue;
+        }
+
         float result;
-        if (divide_line(line, &result) == -1)
-        {
+        if (divide_line(line, &result) == -1) {
             free(line);
             return -1;
         }
