@@ -1,7 +1,7 @@
-#include "stdio.h"
-#include "stdlib.h"
-#include "pthread.h"
-#include "time.h"
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 #define MAX_N 16
 
